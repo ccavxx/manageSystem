@@ -11,9 +11,11 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd"
 		>
-    
-     <context:component-scan base-package="com.tmh.web.service" />
+     
      <import resource="applicationContext-shiro.xml" />
+     <import resource="applicationContext-thread.xml" />
+     
+     <context:component-scan base-package="com.tmh.web.service" />
      
      <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"	destroy-method="close">
 		<property name="filters" value="stat" />
