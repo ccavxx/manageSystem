@@ -1,8 +1,6 @@
 package com.tmh.test.base;
 
 
-import java.util.logging.Logger;
-
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;  
 import org.springframework.mock.web.MockServletContext;
