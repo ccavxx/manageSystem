@@ -1,5 +1,7 @@
 package com.tmh.utils;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -10,6 +12,8 @@ import org.htmlparser.filters.AndFilter;
 import org.htmlparser.filters.HasAttributeFilter;
 import org.htmlparser.filters.TagNameFilter;
 import org.htmlparser.util.NodeList;
+
+import com.tmh.web.common.Constants;
 
 
 public class HtmlUtils {
@@ -50,6 +54,71 @@ public class HtmlUtils {
 			logger.error("抓取的异常问题:" + e.getMessage());
 			return null;
 		}
+	}
+	
+	/**
+	 * 通过domain获取数据
+	 * 设和json字符串
+	 * @MethodName:getWebCon
+	 * @param domain
+	 * @return
+	 * @return String
+	 * @author TianMengHua
+	 * @Date 2015年12月2日-下午3:59:07
+	 */
+	public static String getWebCon(String domain){
+//		agentIP();
+		StringBuffer sb = new StringBuffer();
+		Integer responseCode = 0;
+		java.net.URL url = null;
+		try {
+		    url = new java.net.URL(domain);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestProperty("User-Agent","Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.111 Safari/537.36");
+			conn.setConnectTimeout(TIME_OUT);
+			conn.setReadTimeout(TIME_OUT);
+			responseCode = conn.getResponseCode();
+			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+			String line;
+			while ((line = in.readLine()) != null) {
+				sb.append(line);
+			}
+			in.close();
+		} catch (Exception e) {
+			 
+			 if(Constants.HTTP_CONNECTION_ERROR_REQUEST.equals(responseCode)){
+				 logger.error(domain+" [失败] [http code:]"+responseCode+" [原因:错误请求 — 请求中有语法问题，或不能满足请求。  ] [exception:]"+e.getMessage());
+			 }
+			 else if(Constants.HTTP_CONNECTION_OBJ_NOT_FOUND.equals(responseCode)){
+				 logger.error(domain+" [失败] [http code:]"+responseCode+" [原因:服务器找不到给定的资源,文档不存在  ] [exception:]"+e.getMessage());
+			 }
+			 else if(Constants.HTTP_CONNECTION_OVERLOAD.equals(responseCode)){
+				 logger.error(domain+"  [失败] [http code:]"+responseCode+" [原因:无法获得服务 — 由于临时过载或维护，服务器无法处理请求] [exception:]"+e.getMessage());
+			 }
+			 else if(Constants.HTTP_CONNECTION_TIMEOUT.equals(responseCode)){
+			     logger.error(domain+" [失败] [http code:]"+responseCode+" [原因:网关超时  ] [exception:]"+e.getMessage());
+				 return responseCode+"";
+			 }else{
+				  logger.warn(domain+"  [失败] [http code:]"+responseCode+" [exception:]"+e.getMessage());
+				  return String.valueOf(responseCode);
+			 }
+		}
+		return sb.toString();
+	}
+	
+	/**
+	 * 启动代理ip
+	 * @MethodName:agentIP
+	 * @return void
+	 * @author TianMengHua
+	 * @Date 2015年12月2日-下午4:24:09
+	 */
+	public static void agentIP(){
+		//设置代理
+		System.getProperties().setProperty("proxySet", "true"); //如果不设置，只要代理IP和代理端口正确,此项不设置也可以
+		System.getProperties().setProperty("http.proxyHost", "124.206.133.227");
+		System.getProperties().setProperty("http.proxyPort", "80");
+		logger.info("启用代理IP:" + System.getProperty("http.proxyHost") + " port:" + System.getProperty("http.proxyPort"));
 	}
 	
 	public static void main(String[] args) {
