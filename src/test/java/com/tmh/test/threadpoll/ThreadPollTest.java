@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.tmh.test.base.AbstractTest;
+import com.tmh.utils.HtmlUtils;
 
 /**
  * 生产者消费者多线程测试
@@ -23,7 +24,7 @@ public class ThreadPollTest extends AbstractTest{
 	ThreadPoolTaskExecutor taskExecutor;
 	
 	//定义装苹果的篮子
-	BlockingQueue<String> queue = new LinkedBlockingQueue<String>(1000);
+	BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
 	
 	// 生产苹果，放入篮子   
     public void produce() throws InterruptedException{  
@@ -37,7 +38,14 @@ public class ThreadPollTest extends AbstractTest{
         return queue.take();  
     } 
     
-    @Test
+    /**
+     * 生产者消费者多线程测试
+     * @MethodName:producerConsumerTest
+     * @return void
+     * @author TianMengHua
+     * @Date 2015年12月2日-下午3:45:41
+     */
+//    @Test
     public void producerConsumerTest() {  
     	
         // 定义苹果生产者   
@@ -90,5 +98,45 @@ public class ThreadPollTest extends AbstractTest{
         	
         }  
     }
+    
+    /**
+     * 模拟增加网站访问量
+     * @MethodName:htmlparse
+     * @return void
+     * @author TianMengHua
+     * @Date 2015年12月2日-下午3:50:41
+     */
+    @Test
+    public void htmlparse(){
+    	
+    	//爬虫线程
+        class htmlParse implements Runnable {  
+            public void run() {  
+                try {  
+                    while (true) { 
+                    	queue.put("加1");
+                    	System.out.println(HtmlUtils.getWebCon("http://shbxcx.sn12333.gov.cn/appVisitedCount.do"));
+                    }  
+                } catch (Exception e) {  
+                	System.out.println(e.getMessage());
+                }  
+            }  
+        }
+    	
+    	for(int i=0;i<30;i++){
+    		taskExecutor.execute(new htmlParse());
+    	}
+    	
+    	 // 程序运行5s后，所有任务停止   
+        try {  
+            Thread.sleep(50000);
+            System.err.println(queue.size());
+        } catch (InterruptedException e) { 
+        	
+        }
+    	
+    }
+    
+    
 	
 }
