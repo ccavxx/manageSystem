@@ -19,6 +19,8 @@ import com.tmh.web.domain.User;
 @Controller
 public class LoginController {
 	
+//	private static Logger logger = Logger.getLogger(LoginController.class);
+	
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login() {
 		return "login";

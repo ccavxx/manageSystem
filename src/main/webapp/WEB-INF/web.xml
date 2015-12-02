@@ -16,6 +16,9 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<listener>  
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class> 
+    </listener>  
 
 	<!-- Spring MVC Servlet -->
 	<servlet>
@@ -66,8 +69,15 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-<welcome-file-list>
-	<welcome-file>index.jsp</welcome-file>
-</welcome-file-list>
+	
+	<!-- log4j -->
+   	<context-param>
+   		<param-name>log4jConfigLocation</param-name>
+   		<param-value>file:/data/vhost/server-config/log4j.properties</param-value>
+	</context-param>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
 
 </web-app>
