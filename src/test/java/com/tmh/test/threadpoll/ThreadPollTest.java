@@ -1,10 +1,18 @@
 package com.tmh.test.threadpoll;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.tmh.test.base.AbstractTest;
@@ -106,7 +114,7 @@ public class ThreadPollTest extends AbstractTest{
      * @author TianMengHua
      * @Date 2015年12月2日-下午3:50:41
      */
-    @Test
+//    @Test
     public void htmlparse(){
     	
     	//爬虫线程
@@ -137,6 +145,4 @@ public class ThreadPollTest extends AbstractTest{
     	
     }
     
-    
-	
 }
