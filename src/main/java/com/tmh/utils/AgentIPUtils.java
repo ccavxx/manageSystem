@@ -30,12 +30,13 @@ public class AgentIPUtils {
 		System.getProperties().setProperty("proxySet", "true"); //如果不设置，只要代理IP和代理端口正确,此项不设置也可以
 		System.getProperties().setProperty("http.proxyHost", ip);
 		System.getProperties().setProperty("http.proxyPort", port);
-		System.err.println("启用代理IP:" + System.getProperty("http.proxyHost") + " port:" + System.getProperty("http.proxyPort"));
+		System.out.println("启用代理IP:" + System.getProperty("http.proxyHost") + " port:" + System.getProperty("http.proxyPort"));
 		logger.info("启用代理IP:" + System.getProperty("http.proxyHost") + " port:" + System.getProperty("http.proxyPort"));
 	}
 	
 	/**
-	 * 查看代理IP地址
+	 * 查看代理IP地址(减少访问压力，仅供测试使用)
+	 * 新HtmlUtils提供抓取的IP的方法
 	 * @MethodName:getHtml
 	 * @param address  http://city.ip138.com/ip2city.asp
 	 * @return
@@ -48,9 +49,9 @@ public class AgentIPUtils {
 		String result = null;
 		try{
 			URL url = new URL(address);
-		URLConnection conn = url.openConnection();
-		conn.setRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; GTB5; .NET CLR 2.0.50727; CIBA)");
-		BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
+			URLConnection conn = url.openConnection();
+			conn.setRequestProperty("User-Agent","Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1; GTB5; .NET CLR 2.0.50727; CIBA)");
+			BufferedInputStream in = new BufferedInputStream(conn.getInputStream());
 		try {
 			String inputLine;
 			byte[] buf = new byte[4096];
@@ -69,7 +70,7 @@ public class AgentIPUtils {
 		}
 			result = new String(html.toString().trim().getBytes("ISO-8859-1"), "gb2312").toLowerCase();
 		}catch(Exception e){
-			e.printStackTrace();
+			System.out.println("异常问题：" + e.getMessage());
 			return null;
 		}
 			html = null;
