@@ -12,9 +12,9 @@ import org.htmlparser.filters.AndFilter;
 import org.htmlparser.filters.HasAttributeFilter;
 import org.htmlparser.filters.TagNameFilter;
 import org.htmlparser.util.NodeList;
+import org.htmlparser.util.ParserException;
 
 import com.tmh.web.common.Constants;
-
 
 public class HtmlUtils {
 	
@@ -44,7 +44,7 @@ public class HtmlUtils {
 			// 生成一个解析器对象，用网页的 url 作为参数
 			Parser parser = new Parser(conn);
 			// 设置网页的编码（UTF-8，GBK）
-			parser.setEncoding("GBK");
+			parser.setEncoding("UTF-8");
 			//根据标签去解析想要到的数据
 			NodeFilter beginNodeFilter = new AndFilter(new TagNameFilter(tag),new HasAttributeFilter(attribute, attributeName));
 			NodeList nodeList = parser.extractAllNodesThatMatch(beginNodeFilter);
@@ -55,6 +55,35 @@ public class HtmlUtils {
 			return null;
 		}
 	}
+	
+	/**
+	 * 获取信息根据html的标签属性（单个标签）
+	 * @MethodName:getTextByTag
+	 * @param url
+	 * @param tag
+	 * @return
+	 * @return String
+	 * @author TianMengHua
+	 * @Date 2015年12月9日-下午12:38:25
+	 */
+	public static String getTextByTag(String url,String tag){
+		TagNameFilter beginNodeFilter = null;
+		NodeList nodeList = null ;
+		try {
+			// 生成一个解析器对象，用网页的 url 作为参数
+			Parser parser = new Parser(url);
+			// 设置网页的编码（UTF-8，GBK）
+			parser.setEncoding("GBK");
+			//根据标签去解析想要到的数据
+			beginNodeFilter = new TagNameFilter(tag);
+			nodeList = parser.extractAllNodesThatMatch(beginNodeFilter);
+		} catch (ParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nodeList.elementAt(0).getChildren().asString();
+	} 
+	
 	
 	/**
 	 * 通过domain获取数据
@@ -107,6 +136,7 @@ public class HtmlUtils {
 	
 	
 	public static void main(String[] args) {
-		System.out.println(getNodeListByTag("http://shbxcx.sn12333.gov.cn/", "h1", "class", "icon001").asString());
+		String agentIP = getTextByTag("http://city.ip138.com/ip2city.asp", "body");
+		System.out.println(agentIP);
 	}
 }
