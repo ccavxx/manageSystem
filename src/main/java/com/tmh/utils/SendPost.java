@@ -17,6 +17,8 @@ import java.net.URLConnection;
  */
 public class SendPost {
 	
+	static final int TIME_OUT = 5000;
+	
 	/**
      * 向指定 URL 发送POST方法的请求
      * @param url 发送请求的 URL
@@ -31,6 +33,8 @@ public class SendPost {
             URL realUrl = new URL(url);
             // 打开和URL之间的连接
             URLConnection conn = realUrl.openConnection();
+            conn.setConnectTimeout(TIME_OUT);
+			conn.setReadTimeout(TIME_OUT);
             // 设置通用的请求属性
             conn.setRequestProperty("accept", "*/*");
             conn.setRequestProperty("connection", "Keep-Alive");
