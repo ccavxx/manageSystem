@@ -17,7 +17,7 @@ import java.net.URLConnection;
  */
 public class SendPost {
 	
-	static final int TIME_OUT = 5000;
+	static final int TIME_OUT = 10000;
 	
 	/**
      * 向指定 URL 发送POST方法的请求
@@ -57,8 +57,7 @@ public class SendPost {
                 result += line;
             }
         } catch (Exception e) {
-            System.out.println("发送 POST 请求出现异常！"+e);
-            e.printStackTrace();
+            System.out.println("发送 POST 请求出现异常！"+e.getMessage());
         }
         //使用finally块来关闭输出流、输入流
         finally{
@@ -71,7 +70,7 @@ public class SendPost {
                 }
             }
             catch(IOException ex){
-                ex.printStackTrace();
+            	System.out.println("发送 POST 请求出现异常！"+ex.getMessage());
             }
         }
         return result;
