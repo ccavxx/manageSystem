@@ -42,7 +42,6 @@
 		<property name="concurrent" value="false" />
 	</bean>
 	
-	
     <bean id="task" class="com.tmh.web.schedule.Task"></bean>
 	
 </beans>
