@@ -32,7 +32,7 @@ public class CheatTest extends AbstractTest{
 	@Test
     public void Chenxiaoge() throws InterruptedException, UnknownHostException{
         
-    	for(int i=0;i<100;i++){
+    	for(int i=0;i<1000;i++){
     		
     		//北京市 BGP多线IP
     		AgentIPUtils.agentIP("183.131.151.208", "80"); 
@@ -49,21 +49,22 @@ public class CheatTest extends AbstractTest{
 	        //发送 POST 请求
 	        int random = (int)(Math.random()*9000+1000);  //1000~9000之间的随机数
 	        //随机生成微信id
-	        String wecha_id = "3t1r2D0I_hBUIA"+ random +"I-SFAumHR0" ;
+	        String wecha_id = "HtBrVW7BU_AZL9I"+ random +"I-S_KvBH9" ;
 	        String s =SendPost.sendPost("http://chengpin.weixmei.com/31cms/index.php?g=Wap&m=Vote&a=toupiao&token=vjcbgt1414375209&id=65&wecha_id=&tid=19",
 	        		"wecha_id=" + wecha_id);
 	        if(s.contains("投票成功,谢谢您的参与")){
 	        	System.out.println("投票成功,谢谢您的参与");
-	        }else{
-	        	System.out.println("已经投过票了");
 	        }
+	        if (s.contains("已经投过票了")) {
+				System.out.println("已经投过票了");
+			}
 	        //随机等待0秒~10秒
 //    		Thread.sleep(random);
     		
     		//人工制造异常切换IP
-    		AgentIPUtils.agentIP("127.0.0.1", "80"); 
-    		System.err.println("人工制造异常切换IP");
-    		AgentIPUtils.getIPAdressForHtml("http://city.ip138.com/ip2city.asp");
+//    		AgentIPUtils.agentIP("127.0.0.1", "80"); 
+//    		System.err.println("人工制造异常切换IP");
+//    		AgentIPUtils.getIPAdressForHtml("http://city.ip138.com/ip2city.asp");
     	}
     }
     
