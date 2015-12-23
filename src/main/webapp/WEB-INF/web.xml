@@ -13,9 +13,18 @@
 			classpath*:/applicationContext.xml
 		</param-value>
 	</context-param>
+	
+	<!-- log4j配置文件路径 -->
+   	<context-param>
+   		<param-name>log4jConfigLocation</param-name>
+   		<param-value>file:/data/vhost/server-config/log4j.properties</param-value>
+	</context-param>
+	
+	<!-- spring监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<!-- log4j日志监听 -->
 	<listener>  
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class> 
     </listener>  
@@ -34,7 +43,18 @@
 		<servlet-name>springServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	
+	<!--filters 监控 Servlet  http://localhost:8080/manageSystem/druid  --> 
+	<servlet>
+		<servlet-name>DruidStatView</servlet-name>
+		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+		<url-pattern>/druid/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 编码过滤器 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -54,7 +74,7 @@
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
 
-<!-- Shiro Security filter -->
+	<!-- Shiro Security filter -->
 	<filter>
 		<filter-name>shiroFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -69,12 +89,6 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
-	
-	<!-- log4j -->
-   	<context-param>
-   		<param-name>log4jConfigLocation</param-name>
-   		<param-value>file:/data/vhost/server-config/log4j.properties</param-value>
-	</context-param>
 	
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
