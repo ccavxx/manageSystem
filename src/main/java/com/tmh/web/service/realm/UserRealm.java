@@ -25,7 +25,7 @@ import com.tmh.web.service.user.UserService;
 @Service
 public class UserRealm extends AuthorizingRealm {
 
-	@Resource(name="userService1")
+	@Resource
     private UserService userService;
 
     @Override
