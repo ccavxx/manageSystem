@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd"
+		>
+	
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"	destroy-method="close">
+		<!-- druid 连接池的 filters 监控-->
+		<property name="filters" value="stat" />
+		<!--maxActive: 最大连接数量 -->
+		<property name="maxActive" value="50" />
+		<!--initialSize: 初始化连接 -->
+		<property name="initialSize" value="1" />
+		
+		<!-- 数据源 -->
+		<property name="driverClassName" value="org.gjt.mm.mysql.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/manage_system?useUnicode=true&amp;characterEncoding=UTF-8" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+    </bean>
+
+	 <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	 	<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="com.tmh.web.domain" />
+		<property name="configLocation" value="classpath:mybatis-configuration.xml"/>
+	 </bean>
+	 
+	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	 </bean>
+	 
+	 <!--使用annotation定义事务 在类（接口）层面或者方法层面上检查应用程序上下文中的所有@Transactional的bean，spring将自动把事务通知的内容通知给它。-->
+     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" /> 
+		
+</beans>
