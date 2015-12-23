@@ -49,7 +49,7 @@ public class CheatTest extends AbstractTest{
 	        //发送 POST 请求
 	        int random = (int)(Math.random()*9000+1000);  //1000~9000之间的随机数
 	        //随机生成微信id
-	        String wecha_id = "HtBrVW7BU_AZL9I"+ random +"I-S_KvBH9" ;
+	        String wecha_id = "HtBrVW7BU_AZL9I"+ random +"I-S_KvBD9" ;
 	        String s =SendPost.sendPost("http://chengpin.weixmei.com/31cms/index.php?g=Wap&m=Vote&a=toupiao&token=vjcbgt1414375209&id=65&wecha_id=&tid=19",
 	        		"wecha_id=" + wecha_id);
 	        if(s.contains("投票成功,谢谢您的参与")){
