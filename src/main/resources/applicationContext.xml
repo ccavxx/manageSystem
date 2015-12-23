@@ -15,40 +15,10 @@
      <import resource="applicationContext-shiro.xml" />
      <import resource="applicationContext-thread.xml" />
      <import resource="applicationContext-quartz.xml" />
+     <import resource="applicationContext-dataSource.xml" />
+     <import resource="applicationContext-mybatis.xml" />
      
+     <!-- 扫描service -->
      <context:component-scan base-package="com.tmh.web.service" />
-     
-     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"	destroy-method="close">
-		<!-- druid 连接池的 filters 监控-->
-		<property name="filters" value="stat" />
-		<!--maxActive: 最大连接数量 -->
-		<property name="maxActive" value="50" />
-		<!--initialSize: 初始化连接 -->
-		<property name="initialSize" value="1" />
-		
-		<!-- 数据源 -->
-		<property name="driverClassName" value="org.gjt.mm.mysql.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/manage_system?useUnicode=true&amp;characterEncoding=UTF-8" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
-    </bean>
-
-	 <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	 	<property name="dataSource" ref="dataSource" />
-		<property name="typeAliasesPackage" value="com.tmh.web.domain" />
-		<property name="configLocation" value="classpath:mybatis-configuration.xml"/>
-	 </bean>
-	 
-	 <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
-	 </bean>
-     
-     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> 
-        <property name="basePackage" value="com.tmh.web.dao"/>
-        <property name="markerInterface" value="com.tmh.web.dao.base.BaseDao"/>
-     </bean> 
-     
-    <!--使用annotation定义事务 在类（接口）层面或者方法层面上检查应用程序上下文中的所有@Transactional的bean，spring将自动把事务通知的内容通知给它。-->
-    <tx:annotation-driven transaction-manager="transactionManager" 	proxy-target-class="true" /> 
      
 </beans>
