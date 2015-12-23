@@ -15,7 +15,7 @@ import com.tmh.web.service.realm.PasswordCreate;
 import com.tmh.web.service.user.ResourceRoleService;
 import com.tmh.web.service.user.UserRoleService;
 import com.tmh.web.service.user.UserService;
-@Service("userService1")
+@Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
