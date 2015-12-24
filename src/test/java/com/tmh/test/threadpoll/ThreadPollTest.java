@@ -114,7 +114,7 @@ public class ThreadPollTest extends AbstractTest{
      * @author TianMengHua
      * @Date 2015年12月2日-下午3:50:41
      */
-//    @Test
+    @Test
     public void htmlparse(){
     	
     	//爬虫线程
@@ -131,7 +131,7 @@ public class ThreadPollTest extends AbstractTest{
             }  
         }
     	
-    	for(int i=0;i<30;i++){
+    	for(int i=0;i<3;i++){
     		taskExecutor.execute(new htmlParse());
     	}
     	

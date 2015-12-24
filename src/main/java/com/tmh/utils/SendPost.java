@@ -17,7 +17,7 @@ import java.net.URLConnection;
  */
 public class SendPost {
 	
-	static final int TIME_OUT = 10000;
+	static final int TIME_OUT = 5000;
 	
 	/**
      * 向指定 URL 发送POST方法的请求
