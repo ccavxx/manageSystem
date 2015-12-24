@@ -2,10 +2,7 @@ package com.tmh.web.controller;
 
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.UUID;
 
@@ -19,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tmh.utils.DateUtils;
-import com.tmh.utils.NumberUtils;
 
 @Controller
 public class UploadController {
