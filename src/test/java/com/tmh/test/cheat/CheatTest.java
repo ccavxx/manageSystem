@@ -29,10 +29,10 @@ public class CheatTest extends AbstractTest{
 	 * @throws UnknownHostException 
      * @Date 2015年12月8日-下午1:44:04
      */
-	@Test
+//	@Test
     public void Chenxiaoge() throws InterruptedException, UnknownHostException{
         
-    	for(int i=0;i<1000;i++){
+    	for(int i=0;i<10;i++){
     		
     		//北京市 BGP多线IP
     		AgentIPUtils.agentIP("183.131.151.208", "80"); 

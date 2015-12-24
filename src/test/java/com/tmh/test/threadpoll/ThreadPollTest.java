@@ -137,7 +137,7 @@ public class ThreadPollTest extends AbstractTest{
     	
     	 // 程序运行5s后，所有任务停止   
         try {  
-            Thread.sleep(50000);
+            Thread.sleep(5000);
             System.err.println(queue.size());
         } catch (InterruptedException e) { 
         	
