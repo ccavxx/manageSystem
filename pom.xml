@@ -1,11 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tmh</groupId>
-	<artifactId>manage-system</artifactId>
+	<artifactId>manageSystem</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>manage-system</name>
+	<name>manageSystem Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 
@@ -100,7 +101,8 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.7.4</version>
 		</dependency>
-
+		
+		<!-- spring相关的jar包 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
@@ -131,7 +133,7 @@
 			<version>4.0.0.RELEASE</version>
 		</dependency>
 
-
+		<!-- servlet相关jar包 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -170,18 +172,30 @@
 
 	</dependencies>
 	<build>
-		<finalName>mingda-manage</finalName>
+		<finalName>manageSystem</finalName>
+		<defaultGoal>compile</defaultGoal>
 		<plugins>
+			<!-- 编译插件 -->
 	  		<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.1</version>
+				<version>3.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
+					<compilerVersion>1.8</compilerVersion>
 					<encoding>utf8</encoding>  
 				</configuration>
 			</plugin>
+			
+			<!-- maven打war包插件 -->
+			<plugin>   
+			      <groupId>org.apache.maven.plugins</groupId>   
+			      <artifactId>maven-war-plugin</artifactId>   
+			      <version>2.6</version> 
+			</plugin>
+			
 		</plugins>
 	</build>
+	
 </project>
