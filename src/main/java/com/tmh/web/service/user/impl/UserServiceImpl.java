@@ -61,6 +61,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Set<String> findRoles(String username) {
 		User user = userDao.findByUsername(username);
@@ -71,6 +72,7 @@ public class UserServiceImpl implements UserService {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Set<String> findPermissions(String username) {
 		User user = userDao.findByUsername(username);
