@@ -57,7 +57,7 @@ public class HtmlUtils {
 	}
 	
 	/**
-	 * 获取信息根据html的标签属性（单个标签）
+	 * 获取标签内信息根据html的标签属性（单个标签）
 	 * @MethodName:getTextByTag
 	 * @param url
 	 * @param tag
@@ -83,6 +83,34 @@ public class HtmlUtils {
 		}
 		return nodeList.elementAt(0).getChildren().asString();
 	} 
+	
+	/**
+	 * 获取标签信息根据html的标签属性（单个标签）
+	 * @MethodName:getTextByTag
+	 * @param url
+	 * @param tag
+	 * @return
+	 * @return String
+	 * @author TianMengHua
+	 * @Date 2015年12月26日-上午10:27:14
+	 */
+	public static String getTagInfoByTag(String url,String tag){
+		TagNameFilter beginNodeFilter = null;
+		NodeList nodeList = null ;
+		try {
+			// 生成一个解析器对象，用网页的 url 作为参数
+			Parser parser = new Parser(url);
+			// 设置网页的编码（UTF-8，GBK）
+			parser.setEncoding("GBK");
+			//根据标签去解析想要到的数据
+			beginNodeFilter = new TagNameFilter(tag);
+			nodeList = parser.extractAllNodesThatMatch(beginNodeFilter);
+		} catch (ParserException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nodeList.elementAt(0).toHtml();
+	}
 	
 	
 	/**
