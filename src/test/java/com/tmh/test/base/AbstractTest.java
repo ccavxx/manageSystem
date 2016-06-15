@@ -3,7 +3,6 @@ package com.tmh.test.base;
 
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;  
-import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;  
 import org.springframework.test.context.TestExecutionListeners;  
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
@@ -42,7 +41,6 @@ public class AbstractTest extends AbstractJUnit4SpringContextTests  {
 	@BeforeClass
 	static public void onSetUp() throws Exception {
 		System.out.println("====================   before =======================");
-		MockServletContext context = new MockServletContext();
 		System.getProperty("WHICH_DB_JAVA_POOL", "dist");
 	}
 

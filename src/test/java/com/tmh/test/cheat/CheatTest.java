@@ -6,7 +6,6 @@ import org.junit.Test;
 
 import com.tmh.test.base.AbstractTest;
 import com.tmh.utils.AgentIPUtils;
-import com.tmh.utils.HtmlUtils;
 import com.tmh.utils.SendPost;
 
 /**
@@ -14,7 +13,6 @@ import com.tmh.utils.SendPost;
  * className:CheatTest
  * @Description:TODO (文件说明：  功能，函数）
  * @author TianMengHua 
- * @mail 迎钱宝网络支付有限公司
  * @CreateTime:2015年12月8日-下午4:43:43
  * @Remark 备注说明
  */
