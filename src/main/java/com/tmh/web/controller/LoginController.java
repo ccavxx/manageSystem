@@ -20,7 +20,7 @@ import com.tmh.web.domain.User;
 @Controller
 public class LoginController {
 	
-	@Log(name = "正在登录")
+	@Log(name = "登录")
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login() {
 		return "login";
@@ -47,7 +47,7 @@ public class LoginController {
 		return "login";
 	}
 	
-	
+	@Log(name = "首页")
 	@RequestMapping(value="index")
 	public String index(HttpServletRequest request,Model model,String username){
 		model.addAttribute("username",username);
