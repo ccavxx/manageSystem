@@ -21,4 +21,11 @@
      <!-- 扫描service -->
      <context:component-scan base-package="com.tmh.web.service" />
      
+     <context:component-scan base-package="com.tmh.web.schedule" />
+     
+     <context:component-scan base-package="com.tmh.web.aop" />
+     
+     <!-- 放在这里扫描service层aop -->
+     <aop:aspectj-autoproxy/> 
+     
 </beans>
