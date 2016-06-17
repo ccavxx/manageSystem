@@ -31,7 +31,7 @@ public class NewsServiceImpl extends BaseServiceImpl<News> implements NewsServic
 		return newsDao.getCountByNews(news);
 	}
 	
-	@Log(name="你访问了新闻列表信息")
+	@Log(name="新闻列表")
 	@Override
 	public List<News> getNewsList(Pager<News> pager, News news) {
 		Map<String,Object> map = new HashMap<String,Object>();
