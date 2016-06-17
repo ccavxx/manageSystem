@@ -5,12 +5,18 @@
 * mybatis 
 * spring 
 * shiro
-* aop    自定义aop
-* annotation  自定义注解  （aop和注解结合使用）
-* ThreadPoolTaskExecutor   线程池xml配置
-* quartz  注解和xml配置两种实现方式
+* aop    
+	* 自定义aop
+* annotation  
+	* 自定义注解  
+* ThreadPoolTaskExecutor   
+	* 线程池xml配置
+* quartz  
+	* 注解方式
+	* xml配置方式
 * mysql
-* druid   连接池  filters 监控 Servlet  http://localhost:8080/manageSystem/druid
+* druid   连接池  
+	* filters 监控 Servlet  http://localhost:8080/manageSystem/druid
 
 ##工具包：
 * agentIP  代理ip实现
