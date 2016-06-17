@@ -14,15 +14,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.tmh.web.annotation.Log;
 import com.tmh.web.domain.User;
 
 @Controller
 public class LoginController {
 	
-//	private static Logger logger = Logger.getLogger(LoginController.class);
-	
+	@Log(name = "正在登录")
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login() {
+		System.out.println("进入登录页面");
 		return "login";
 	}
 	
