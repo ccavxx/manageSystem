@@ -132,6 +132,12 @@
 			<artifactId>spring-test</artifactId>
 			<version>4.0.0.RELEASE</version>
 		</dependency>
+		
+		<dependency>
+		  <groupId>cglib</groupId>
+		  <artifactId>cglib-nodep</artifactId>
+		  <version>3.0</version>
+		</dependency>
 
 		<!-- servlet相关jar包 -->
 		<dependency>

@@ -2,6 +2,8 @@ package com.tmh.web.schedule;
 
 import java.time.LocalDateTime;
 
+import org.springframework.scheduling.annotation.Scheduled;
+
 /**
  * 定时任务
  * className:Task
@@ -12,6 +14,7 @@ import java.time.LocalDateTime;
  */
 public class Task {
 	
+	@Scheduled(cron="0 0 10 ? * *")   
 	public void scheduleTask(){
 		System.out.println("开启计划任务" + LocalDateTime.now());
 	}
