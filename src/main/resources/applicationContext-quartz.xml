@@ -1,47 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	 xmlns:task="http://www.springframework.org/schema/task"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="
+	 http://www.springframework.org/schema/task   http://www.springframework.org/schema/task/spring-task-3.1.xsd 
+	 http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.1.xsd"
 	default-lazy-init="true">
-	<description>Quartz的本地Cron式执行任务配置</description>
+	
+	<!-- 注解模式 -->
+	<!-- 任务扫描注解启动 -->
+	<task:annotation-driven/> 
+	
+	<!-- xml配置模式 -->
+	<!-- <description>Quartz的本地Cron式执行任务配置</description>
 	<bean id="localQuartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-		<!-- Triggers集成 -->
+		Triggers集成
 		<property name="triggers">
 			<list>
-				<!--触发任务-->
+				触发任务
 				<ref bean="taskTrigger" />
 			</list>
 		</property>
 		
 		<property name="quartzProperties">
 			<props>
-				<!-- thread数量，不会动态增长(所有的JOB) -->
+				thread数量，不会动态增长(所有的JOB)
 				<prop key="org.quartz.threadPool.threadCount">10</prop>
-				<!-- thread优先级 -->
+				thread优先级
 				<prop key="org.quartz.threadPool.threadPriority">5</prop>
 				<prop key="org.quartz.threadPool.class">org.quartz.simpl.SimpleThreadPool</prop>
 			</props>
 		</property>
-		<!-- 启动时延期10秒开始任务 -->
+		启动时延期10秒开始任务
 		<property name="startupDelay" value="10" />
-	</bean>
+	</bean> -->
 	
 	<!--触发任务 -->
-	<bean id="taskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+	<!-- <bean id="taskTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="taskJobDetail" />
-		<!-- 每天10:55:50秒触发 -->
+		每天10:55:50秒触发
 		<property name="cronExpression" value="50 55 10 ? * *"  />
-		<!-- 每周六早上4：00 -->
-		<!-- <property name="cronExpression" value="0 0 4 ? * SAT"  /> -->
-		<!-- 每月最后一天23点55执行一次-->
-		<!-- <property name="cronExpression" value="0 55 23 L * ?"  /> -->
+		每周六早上4：00
+		<property name="cronExpression" value="0 0 4 ? * SAT"  />
+		每月最后一天23点55执行一次
+		<property name="cronExpression" value="0 55 23 L * ?"  />
 	</bean>
 	<bean id="taskJobDetail" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="task" />
 		<property name="targetMethod" value="scheduleTask" />
-		<!-- 是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 --> 
+		是否允许任务并发执行。当值为false时，表示必须等到前一个线程处理完毕后才再启一个新的线程 
 		<property name="concurrent" value="false" />
-	</bean>
+	</bean> 
 	
     <bean id="task" class="com.tmh.web.schedule.Task"></bean>
+    -->
 	
 </beans>
