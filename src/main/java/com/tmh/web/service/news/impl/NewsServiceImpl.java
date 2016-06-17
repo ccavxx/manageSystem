@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.tmh.web.annotation.Log;
 import com.tmh.web.common.pager.BaseServiceImpl;
 import com.tmh.web.common.pager.Pager;
 import com.tmh.web.dao.news.NewsDao;
@@ -29,7 +30,8 @@ public class NewsServiceImpl extends BaseServiceImpl<News> implements NewsServic
 		map.put("news", news);
 		return newsDao.getCountByNews(news);
 	}
-
+	
+	@Log(name="你访问了新闻列表信息")
 	@Override
 	public List<News> getNewsList(Pager<News> pager, News news) {
 		Map<String,Object> map = new HashMap<String,Object>();
