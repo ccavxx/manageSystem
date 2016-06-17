@@ -23,7 +23,6 @@ public class LoginController {
 	@Log(name = "正在登录")
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login() {
-		System.out.println("进入登录页面");
 		return "login";
 	}
 	
