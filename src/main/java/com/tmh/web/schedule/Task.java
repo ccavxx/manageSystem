@@ -16,8 +16,23 @@ import org.springframework.stereotype.Component;
 @Component
 public class Task {
 	
-	@Scheduled(cron="0 5 15 ? * *")   
+	/**
+	 * 方法名：scheduleTask
+	 * 描述  ：
+	 *	注解方式的定时任务
+	 */
+	@Scheduled(cron="0 33 15 ? * *")   
 	public void scheduleTask(){
 		System.out.println("开启计划任务" + LocalDateTime.now());
+	}
+	
+	/**
+	 * 方法名：scheduleTask1
+	 * 描述  ：
+	 *		自定义定时任务
+	 * @param name
+	 */
+	public void scheduleTask1(long name){
+		System.out.println("开启任务" + name);
 	}
 }
