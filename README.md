@@ -14,6 +14,7 @@
 * quartz  
 	* 注解方式
 	* xml配置方式
+	* 自定义方式
 * mysql
 * druid   连接池  
 	* filters 监控 Servlet  http://localhost:8080/manageSystem/druid
