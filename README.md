@@ -1,6 +1,7 @@
 # manageSystem
 系统技术整合,特点是各种技术的整合使用,不深入，广范围
 ##后端：
+* jdk1.8
 * springMVC 
 * mybatis 
 * spring 
