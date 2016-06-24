@@ -28,4 +28,7 @@
      <!-- 放在这里扫描service层aop -->
      <aop:aspectj-autoproxy/> 
      
+     <!-- Spring容器会在加载完Spring容器后把上下文对象调用这个对象中的setApplicationContext -->
+     <bean id="springContextHelper" class="com.tmh.web.core.SpringContextHelper"></bean>
+     
 </beans>
