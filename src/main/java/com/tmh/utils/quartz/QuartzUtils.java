@@ -1,5 +1,6 @@
 package com.tmh.utils.quartz;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import org.quartz.CronScheduleBuilder;
@@ -15,6 +16,8 @@ import org.quartz.SchedulerFactory;
 import org.quartz.TriggerBuilder;
 import org.quartz.TriggerKey;
 import org.quartz.impl.StdSchedulerFactory;
+
+import com.tmh.web.core.SpringContextHelper;
 
 /**
  * 【工程名】
@@ -37,6 +40,22 @@ public class QuartzUtils implements Job{
      * 调用定时任务执行方法
      */
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
+		try {
+			QuartzData quartzData=(QuartzData)arg0.getJobDetail().getJobDataMap().get("quartzData");
+			String taskClass=arg0.getJobDetail().getJobDataMap().get("taskClass").toString();;
+		    String taskMethod=arg0.getJobDetail().getJobDataMap().get("taskMethod").toString();;
+			Object obj = SpringContextHelper.getBean(taskClass);
+			// 获取方法
+			Method m = obj.getClass().getMethod(taskMethod, new Class[] {QuartzData.class});
+			// 调用方法
+			if(quartzData!=null){
+				m.invoke(obj,quartzData);
+			}else{
+				m.invoke(obj,new Object(){});
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -209,12 +228,6 @@ public class QuartzUtils implements Job{
 			e.printStackTrace();
 		}
 		return false;
-	}
-	
-	public static void main(String[] args) {
-		QuartzData quartzData = new QuartzData();
-		quartzData.setObject("我是参数");
-		QuartzUtils.addJob("自定义定时任务", "com.tmh.web.schedule.Task", "scheduleTask1", "0 8 16 ? * *", quartzData);
 	}
 	
 }
