@@ -14,6 +14,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.tmh.utils.quartz.QuartzData;
+import com.tmh.utils.quartz.QuartzUtils;
 import com.tmh.web.annotation.Log;
 import com.tmh.web.domain.User;
 
@@ -23,6 +25,9 @@ public class LoginController {
 	@Log(name = "登录")
 	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login() {
+		QuartzData quartzData = new QuartzData();
+		quartzData.setObject("我是参数");
+		QuartzUtils.addJob("自定义定时任务", "timeTask", "scheduleTask1", "0 19 11 ? * *", quartzData);
 		return "login";
 	}
 	
