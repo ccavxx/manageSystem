@@ -45,7 +45,7 @@ public interface NewsDao extends BaseDao{
 	 * @author TianMengHua
 	 * @Date 2015年10月15日-下午12:03:12
 	 */
-	@Insert("INSERT INTO news ( id,title,newsType,content) VALUE " +
+	@Insert("INSERT INTO news ( id,title,newsType,content) VALUES " +
 			"(#{id},#{title},#{newsType},#{content})")
 	public void addNews(News news);
 	
