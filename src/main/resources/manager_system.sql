@@ -131,3 +131,21 @@ CREATE TABLE `user_role` (
 -- ----------------------------
 INSERT INTO `user_role` VALUES ('1', '1');
 INSERT INTO `user_role` VALUES ('2', '2');
+
+DROP TABLE IF EXISTS `shard_test_0`;
+CREATE TABLE `shard_test_0` (
+  `name` varchar(25) NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `shard_test_1`;
+CREATE TABLE `shard_test_1` (
+  `name` varchar(25) NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `shard_test_2`;
+CREATE TABLE `shard_test_2` (
+  `name` varchar(25) NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
