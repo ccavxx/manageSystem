@@ -15,7 +15,7 @@ public class ShardDaoTest extends AbstractTest{
 	@Test
 	@Rollback(false)
 	public void insert(){
-		for(int i=0;i<1;i++){
+		for(int i=0;i<100;i++){
 			String name = "tmh" + i;
 			shardDao.addShard(name);
 		}
