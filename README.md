@@ -20,6 +20,7 @@
 * druid   连接池  
 	* filters 监控 Servlet  http://localhost:8080/manageSystem/druid
 * shardbatis  分表插件的引入
+* AES  加密实现
 
 ##工具包：
 * agentIP  代理ip实现
