@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE shardingConfig PUBLIC "-//shardbatis.googlecode.com//DTD Shardbatis 2.0//EN"
   "http://shardbatis.googlecode.com/dtd/shardbatis-config.dtd">
-	<shardingConfig>        
+	<shardingConfig>   
+			<!--   
+                parseList可选配置  
+                         如果配置了parseList,只有在parseList范围内并且不再ignoreList内的sql才会被解析和修改  
+          -->  
+           <parseList>  
+                <value>com.tmh.web.dao.shard.ShardDao.addShard</value>  
+           </parseList>
 	       <!--配置分表策略-->        
 	       <strategy tableName="shard_test" strategyClass="com.tmh.web.core.ShardStrategyImpl"/> 
 	</shardingConfig>    
