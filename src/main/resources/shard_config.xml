@@ -4,7 +4,7 @@
 	<shardingConfig>   
 			<!--   
                 parseList可选配置  
-                         如果配置了parseList,只有在parseList范围内并且不再ignoreList内的sql才会被解析和修改  
+                          如果配置了parseList,只有在parseList范围内并且不再ignoreList内的sql才会被解析和修改  
            -->  
            <parseList>  
                 <value>com.tmh.web.dao.shard.ShardDao.addShard</value>  
