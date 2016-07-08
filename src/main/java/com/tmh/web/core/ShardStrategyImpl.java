@@ -22,10 +22,16 @@ public class ShardStrategyImpl implements ShardStrategy{
 	@Override
 	public String getTargetTableName(String baseTableName, Object params,
 			String mapperId) {
-		Random random = new Random();
-		int k = random.nextInt(10);
-		k = k%3;
-		return baseTableName+"_" + k;
+		//新增的时候分表策略
+		if(mapperId.contains("addShard")){
+			Random random = new Random();
+			int k = random.nextInt(10);
+			k = k%3;
+			return baseTableName+"_" + k;
+		}else{
+			return baseTableName+"_" + params;
+		}
+		
 	}
 
 }
