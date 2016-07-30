@@ -63,7 +63,7 @@ public class LogAop {
          System.out.println(method.getAnnotation(Log.class).name()+"标记"+tag.get());
      }
      
-     @After("webLog()")
+//     @After("webLog()")
      public void afterExec(JoinPoint joinPoint){
     	 System.out.println("-----after----");
          MethodSignature ms=(MethodSignature) joinPoint.getSignature();
@@ -71,7 +71,7 @@ public class LogAop {
          System.out.println("标记为"+tag.get()+"的方法"+method.getName()+"运行消耗"+(System.currentTimeMillis()-time.get())+"ms");
      }
       
-     @Around("webLog()")
+//     @Around("webLog()")
      public void aroundExec(ProceedingJoinPoint pjp) throws Throwable{
     	 System.out.println("-----around----");
          pjp.proceed();
