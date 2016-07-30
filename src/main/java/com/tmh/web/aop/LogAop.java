@@ -63,7 +63,7 @@ public class LogAop {
          System.out.println(method.getAnnotation(Log.class).name()+"标记"+tag.get());
      }
      
-//     @After("webLog()")
+//    @After("webLog()")
      public void afterExec(JoinPoint joinPoint){
     	 System.out.println("-----after----");
          MethodSignature ms=(MethodSignature) joinPoint.getSignature();
