@@ -25,6 +25,8 @@
      
      <context:component-scan base-package="com.tmh.web.aop" />
      
+     <context:component-scan base-package="com.tmh.web.sys.init" />
+     
      <!-- 放在这里扫描service层aop -->
      <aop:aspectj-autoproxy/> 
      
