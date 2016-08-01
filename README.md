@@ -5,6 +5,9 @@
 * springMVC 
 * mybatis 
 * spring 
+	* @ControllerAdvice  Spring能扫描到的地方,实现全局异常的回调。
+	* @ExceptionHandler  捕获异常信息
+	* spring启动加载
 * shiro
 * aop    
 	* 自定义aop
