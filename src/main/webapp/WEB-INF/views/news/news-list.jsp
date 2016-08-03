@@ -118,7 +118,7 @@
 						  	<c:forEach items="${pager.list}" var="news">
 						  		<tr id="tr_${news.id}">
 									<td>${news.id }</td>
-									<td class="center">${news.title }</td>
+									<td class="center"><c:out value="${news.title }"/></td>
 									<td class="center">${news.author }</td>
 									<td class="center"><fmt:formatDate value="${news.createTime }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 									<td class="center">

@@ -156,7 +156,7 @@
 							<div class="control-group">
 								<label class="control-label" for="focusedInput">标题</label>
 								<div class="controls">
-								  <input class="input-xlarge focused" id="title" type="text" value="${news.title }">
+								  <input class="input-xlarge focused" id="title" type="text" value="<c:out value="${news.title }" />">
 								</div>
 							</div>
 							<div class="control-group">
