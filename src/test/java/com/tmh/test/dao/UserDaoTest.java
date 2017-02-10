@@ -16,8 +16,8 @@ public class UserDaoTest extends AbstractTest{
 	@Test
 	@Rollback(false)
 	public void findByUsername(){
-		User user = userDao.findByUsername("admin");
-		System.out.println(user.getId());
+		User user = userDao.findById(1);
+		System.out.println(user.getUsername());
 	}
 	
 }
